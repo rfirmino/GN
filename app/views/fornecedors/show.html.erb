@@ -1,0 +1,73 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Nome:</b>
+  <%= @fornecedor.nome %>
+</p>
+
+<p>
+  <b>Descrição:</b>
+  <%= @fornecedor.descricao %>
+</p>
+
+<p>
+  <b>Cidade:</b>
+  <%= @fornecedor.cidade %>
+</p>
+
+<p>
+  <b>Endereço:</b>
+  <%= @fornecedor.endereco %>
+</p>
+
+<p>
+  <b>Bairro:</b>
+  <%= @fornecedor.bairro %>
+</p>
+
+<p>
+  <b>Número:</b>
+  <%= @fornecedor.numero %>
+</p>
+<br>
+<p>
+  <b>E-mails:</b>
+</p>
+
+<p>  
+  <% @fornecedor.emails.each_with_index do |e, index| %>
+    <% i ||= index+1 %>
+    <br>
+    <b><%= "E-mail #{i}:" %></b>
+    <%= e.email %>
+    <br>
+    <b><%= "Referência #{i}:" %></b>
+    <%= e.referencia %>  
+    <br> 
+  <% end %>
+</p>
+
+<br>
+
+<p>
+  <b>Telefones:</b>
+</p>
+
+<p>  
+  <% @fornecedor.telefones.each_with_index do |tel, index| %>
+    <% i ||= index+1 %>
+    <br>
+    <b><%= "DDD #{i}:" %></b>
+    <%= tel.ddd %>
+    <br>
+    <b><%= "Número #{i}:" %></b>
+    <%= tel.numero %>
+    <br>
+    <b><%= "Referência #{i}:" %></b>
+    <%= tel.referencia %>
+    <br>
+  <% end %>
+</p>
+
+<%= link_to 'Editar', edit_fornecedor_path(@fornecedor) %> |
+<%= link_to 'Voltar', fornecedors_path %>

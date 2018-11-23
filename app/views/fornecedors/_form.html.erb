@@ -1,0 +1,73 @@
+<%= form_with(model: fornecedor, local: true) do |form| %>
+  <% if fornecedor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(fornecedor.errors.count, "error") %> prohibited this fornecedor from being saved:</h2>
+
+      <ul>
+      <% fornecedor.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nome %>
+    <%= form.text_field :nome %>
+  </div>
+
+  <div class="field">
+    <%= form.label :descrição %>
+    <%= form.text_field :descricao %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cidade %>
+    <%= form.text_field :cidade %>
+  </div>
+
+  <div class="field">
+    <%= form.label :endereço %>
+    <%= form.text_field :endereco %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bairro %>
+    <%= form.text_field :bairro %>
+  </div>
+
+  <div class="field">
+    <%= form.label :número %>
+    <%= form.text_field :numero %>
+  </div>
+
+  <h4>E-mails</h4>
+
+  <div id="emails">
+    <%= form.fields_for :emails do |email| %>
+      <%= render 'email_fields', f: email %>
+    <% end %>
+ 
+    <div class="links">
+      <%= link_to_add_association '+E-mail', form, :emails, class: "btn waves-effect waves-light blue right white-text" %>
+      <br><br>
+    </div>
+  </div>
+
+<h4>Telefones</h4>
+
+  <div id="telefones">
+    <%= form.fields_for :telefones do |telefone| %>
+      <%= render 'telefone_fields', f: telefone %>
+    <% end %>
+ 
+    <div class="links">
+      <%= link_to_add_association '+Telefone', form, :telefones, class: "btn waves-effect waves-light blue right white-text" %>
+      <br><br>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Criar Fornecedor', class: 'btn btn-primary grey' %>
+  </div>
+<% end %>

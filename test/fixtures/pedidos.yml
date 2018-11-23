@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  datahora: 2018-11-23 08:30:52
+  notafiscal: MyString
+  valorfrete: 1.5
+  desconto: 1.5
+  valortotal: 1.5
+  transportadora: one
+
+two:
+  datahora: 2018-11-23 08:30:52
+  notafiscal: MyString
+  valorfrete: 1.5
+  desconto: 1.5
+  valortotal: 1.5
+  transportadora: two

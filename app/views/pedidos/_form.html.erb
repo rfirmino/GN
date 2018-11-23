@@ -1,0 +1,58 @@
+<%= form_with(model: pedido, local: true) do |form| %>
+  <% if pedido.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(pedido.errors.count, "error") %> prohibited this pedido from being saved:</h2>
+
+      <ul>
+      <% pedido.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :datahora, "Data/Hora" %>
+    <%= form.datetime_local_field :datahora %>
+  </div>
+
+  <div class="field">
+    <%= form.label :notafiscal, "Nota Fiscal" %>
+    <%= form.text_field :notafiscal %>
+  </div>
+
+  <div class="field">
+    <%= form.label :valorfrete, "Valor do frete" %>
+    <%= form.number_field :valorfrete, id: :pedido_valorfrete %>
+  </div>
+
+  <div class="field">
+    <%= form.label :desconto %>
+    <%= form.number_field :desconto, id: :pedido_desconto %>
+  </div>
+
+  <div class="field">
+    <%= form.label :transportadora_id %>
+    <%= form.collection_select(:transportadora_id, Transportadora.all, :id, :nome, { prompt: "" }, { class: 'browser-default' }) %>
+  </div>
+
+  <div id="items">
+    <%= form.fields_for :items do |item| %>
+      <%= render 'item_fields', f: item %>
+    <% end %>
+ 
+    <div class="links">
+      <%= link_to_add_association '+Item', form, :items, class: "btn waves-effect waves-light blue right white-text" %>
+      <br><br>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :valortotal, "Valor total" %>
+    <%= form.number_field :valortotal, id: :pedido_valortotal %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit  'Criar Pedido', class: 'btn btn-primary grey', id: 'ValorTotal' %>
+  </div>
+<% end %>

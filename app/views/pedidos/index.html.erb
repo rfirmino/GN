@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Pedidos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Data/hora</th>
+      <th>Nota Fiscal</th>
+      <th>Transportadora</th>
+      <th>Produto</th>
+      <th>Valor do Frete</th>
+      <th>Desconto</th>
+      <th>Valor Total</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pedidos.each do |pedido| %>
+      <tr>
+        <td><%= pedido.datahora %></td>
+        <td><%= pedido.notafiscal %></td>
+        <td><%= pedido.transportadora.nome %></td>
+        <td><%= MostrarProdutoNome(pedido.id) %></td>
+        <td>R$ <%= pedido.valorfrete %></td>
+        <td>R$ <%= pedido.desconto %></td>
+        <td>R$ <%= pedido.valortotal %></td>
+        <td><%= link_to 'Mostrar', pedido %></td>
+        <td><%= link_to 'Editar', edit_pedido_path(pedido) %></td>
+        <td><%= link_to 'Deletar', pedido, method: :delete, data: { confirm: 'Você tem certeza?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<div class="actions">
+  <%= link_to 'Novo Pedido', new_pedido_path, class: 'btn btn-primary grey' %>
+</div>
+
+<br>
+
+<div class="links">
+  <%= link_to 'Produtos', produtos_path, class: "btn waves-effect waves-light blue white-text"%>
+  <%= link_to 'Fornecedores', fornecedors_path, class: "btn waves-effect waves-light blue white-text"%>
+  <%= link_to 'Transportadoras', transportadoras_path, class: "btn waves-effect waves-light blue white-text"%>
+</div>
